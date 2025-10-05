@@ -34,10 +34,10 @@ export function Navigation() {
 
   const navLinks = [
     { href: "/about", label: "About" },
-    { href: "/services", label: "Solutions" },
-    { href: "/work", label: "Case Studies" },
-    { href: "/blog", label: "Insights" },
-    { href: "/resources", label: "Playbooks" },
+    // { href: "/services", label: "Solutions" },
+    // { href: "/work", label: "Case Studies" },
+    { href: "/blog", label: "Blog" },
+    // { href: "/resources", label: "Playbooks" },
     { href: "/careers", label: "Careers" },
     { href: "/contact", label: "Contact" },
   ]
