@@ -4,6 +4,18 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { useCalendly } from "@/hooks/use-calendly"
+import { LayoutTextFlip } from "../ui/layout-text-flip"
+import { motion } from "framer-motion"
+import Script from "next/script"
+
+// Type declaration for lottie-player
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "lottie-player": any
+    }
+  }
+}
 
 const ORBIT_POINTS = Array.from({ length: 20 }, (_, index) => ({
   left: `${(index * 37) % 100}%`,
@@ -41,34 +53,92 @@ export function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="max-w-5xl mx-auto text-center animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight mb-6 text-foreground">
-            Build, scale, and grow the products your customers keep choosing.
-          </h1>
-
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            E2S_HuB is an AI-first product and growth studio partnering with SaaS, SME, and D2C operators who refuse to pay
-            for endless billable hours. Led by a product leader, fueled by Rajat’s revenue playbooks and Ravi’s scalable AI
-            engineering, we take ideas from discovery to adoption and compound the growth loops that follow.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              size="lg"
-              onClick={openCalendly}
-              className="rounded-xl text-base px-8 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+          {/* Text Content */}
+          <div className="w-full lg:flex-1 lg:max-w-2xl text-center lg:text-left">
+            <motion.div 
+              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              Talk to the founders
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-xl border-border text-foreground hover:bg-muted text-base px-8 bg-transparent"
+              {/* Desktop: Multi-line layout */}
+              <h1 className="hidden lg:block text-4xl xl:text-5xl 2xl:text-6xl font-bold tracking-tight text-foreground leading-tight">
+                <span className="block">Transform Your</span>
+                <span className="block">Business With</span>
+                <span className="block mt-2">
+                  <LayoutTextFlip
+                    text="10x More"
+                    words={["Intelligence", "Growth", "Automation", "Innovation"]}
+                    className="text-4xl xl:text-5xl 2xl:text-6xl"
+                  />
+                </span>
+              </h1>
+
+              {/* Tablet: Single line layout */}
+              <h1 className="hidden md:block lg:hidden text-3xl md:text-4xl font-bold tracking-tight text-foreground leading-tight">
+                <span className="inline">Transform Your Business With </span>
+                <LayoutTextFlip
+                  text="10x More"
+                  words={["Intelligence", "Growth", "Automation", "Innovation"]}
+                  className="text-3xl md:text-4xl"
+                />
+              </h1>
+
+              {/* Mobile: Single line layout */}
+              <h1 className="block md:hidden text-2xl sm:text-3xl font-bold tracking-tight text-foreground leading-tight">
+                <span className="inline">Transform Your Business With </span>
+                <LayoutTextFlip
+                  text="10x More"
+                  words={["Intelligence", "Growth", "Automation", "Innovation"]}
+                  className="text-2xl sm:text-3xl"
+                />
+              </h1>
+            </motion.div>
+
+            <motion.p 
+              className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Link href="/services">Explore our approach</Link>
-            </Button>
+              From idea to impact - we use design, data, and AI to build products that learn, adapt, and scale
+            </motion.p>
+
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Button
+                size="lg"
+                onClick={openCalendly}
+                className="rounded-xl text-base px-8 py-6 transition-all hover:-translate-y-0.5 hover:shadow-lg bg-primary text-primary-foreground"
+              >
+                Book a Discovery Call
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </motion.div>
+          </div>
+
+          {/* Lottie Animation - Below text on tablet/mobile, right side on desktop */}
+          <div className="w-full lg:flex-1 lg:max-w-xl xl:max-w-2xl order-last lg:order-last">
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <Script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" strategy="afterInteractive" />
+              <lottie-player
+                autoplay
+                loop
+                mode="normal"
+                src="/lottiefile.json"
+                style={{ width: "100%", height: "auto", minHeight: "300px" }}
+              />
+            </motion.div>
           </div>
         </div>
       </div>
