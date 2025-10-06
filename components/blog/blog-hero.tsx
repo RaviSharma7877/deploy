@@ -1,31 +1,14 @@
-"use client"
-
-import { motion } from "framer-motion"
-import { createSmoothTransition, smoothTransition } from "@/lib/motion"
-
 export function BlogHero() {
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-32 pb-20 bg-background">
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h1
-            className="text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight mb-6 text-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={smoothTransition}
-          >
-            Field notes from shipping AI-first products.
-          </motion.h1>
-
-          <motion.p
-            className="text-lg md:text-xl text-muted-foreground leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={createSmoothTransition({ delay: 0.2 })}
-          >
-            Practical breakdowns of the roadmaps, engineering patterns, and growth moves we use with SaaS, SME, and D2C
-            partners.
-          </motion.p>
+    <section className="bg-background pt-32 pb-16">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            Everything you need to know about web apps
+          </h1>
+          <p className="mt-6 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            We write about everything from design to deployment to get your website shipped and ready to go!
+          </p>
         </div>
       </div>
     </section>

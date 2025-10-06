@@ -2,7 +2,8 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { WorkHero } from "@/components/work/work-hero"
 import { WorkGrid } from "@/components/work/work-grid"
-import { WorkCTA } from "@/components/work/work-cta"
+import { WorkTestimonial } from "@/components/work/work-testimonial"
+import { ClosingCTA } from "@/components/home/closing-cta"
 import { buildMetadata } from "@/lib/site"
 
 export const metadata = buildMetadata({
@@ -19,7 +20,8 @@ export default function WorkPage() {
       <main id="main-content" className="min-h-screen">
         <WorkHero />
         <WorkGrid />
-        <WorkCTA />
+        <WorkTestimonial />
+        <ClosingCTA />
       </main>
       <Footer />
     </>

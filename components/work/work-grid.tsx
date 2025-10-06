@@ -1,89 +1,103 @@
-"use client"
-
-import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { createSmoothTransition } from "@/lib/motion"
+import Image from "next/image"
 
-export function WorkGrid() {
+interface WorkGridProps {
+  heading?: string
+  subheading?: string
+}
+
+export function WorkGrid({ heading, subheading }: WorkGridProps = {}) {
   const caseStudies = [
     {
-      title: "Predictive CX for a SaaS support platform",
-      metric: "-27% churn in 120 days",
-      industry: "SaaS",
-      description: "Implemented predictive health scoring, alerted success teams, and automated playbooks that retained mid-market accounts.",
-      image: "/placeholder.svg?height=600&width=800",
-      slug: "saas-churn-reduction",
+      title: "Algochurn",
+      description: "Practice the most popular coding questions asked in a technical interview round.",
+      highlight: "Used by 1000+ registered users preparing for technical interviews.",
+      liveUrl: "https://algochurn.com",
+      images: [
+        "/placeholder.svg?height=360&width=640&text=Algochurn+Dashboard",
+        "/placeholder.svg?height=360&width=640&text=Algochurn+Interview+Prep",
+      ],
     },
     {
-      title: "AI retail copilot for a D2C wellness brand",
-      metric: "3× sales velocity",
-      industry: "D2C",
-      description: "Built a conversational shopping copilot, personalised bundles, and optimised fulfillment to increase repeat rate.",
-      image: "/placeholder.svg?height=600&width=800",
-      slug: "d2c-wellness-copilot",
+      title: "Tailwind Master Kit",
+      description: "Get beautiful, responsive, professionally developed Tailwind UI components and build your website quicker.",
+      highlight: "Trusted by 500+ founders to launch production-ready interfaces.",
+      liveUrl: "https://tailwindmasterkit.com",
+      images: [
+        "/placeholder.svg?height=360&width=640&text=Tailwind+Components",
+        "/placeholder.svg?height=360&width=640&text=Tailwind+Library",
+      ],
     },
     {
-      title: "Automation-first credit ops for an SME lender",
-      metric: "Launch in 12 weeks",
-      industry: "Fintech",
-      description: "Delivered a modular lending platform with AI underwriting, onboarding workflows, and regulatory compliance baked in.",
-      image: "/placeholder.svg?height=600&width=800",
-      slug: "sme-credit-automation",
+      title: "Creme Digital",
+      description: "Commonsense solutions that achieve marketing objectives and reach business goals.",
+      highlight: "Since 2015, Creme Digital&apos;s solutions have supported brands from virtually every industry.",
+      liveUrl: "https://cremedigital.com",
+      images: [
+        "/placeholder.svg?height=360&width=640&text=Creme+Digital+Landing",
+        "/placeholder.svg?height=360&width=640&text=Creme+Digital+Forms",
+      ],
     },
     {
-      title: "B2B SaaS monetisation reboot",
-      metric: "+41% expansion revenue",
-      industry: "SaaS",
-      description: "Rebuilt pricing, packaging, and usage insights; automated handoffs between product qualified leads and sales.",
-      image: "/placeholder.svg?height=600&width=800",
-      slug: "saas-monetisation-reboot",
+      title: "Invoker Labs",
+      description: "Delivering magical Web3 experiences with a wide range of products and services.",
+      highlight: "Flagship products include Nearsend, Nearblocks, nKYС and Route ag.",
+      liveUrl: "https://invokerlabs.com",
+      images: [
+        "/placeholder.svg?height=360&width=640&text=Invoker+Labs+Portal",
+        "/placeholder.svg?height=360&width=640&text=Invoker+Labs+Products",
+      ],
     },
   ]
 
   return (
-    <section className="py-32 bg-background">
+    <section className="bg-background py-12 sm:py-16">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {caseStudies.map((study, index) => (
-            <motion.div
-              key={study.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={createSmoothTransition({ delay: index * 0.1 })}
-            >
-              <Link
-                href={`/work/${study.slug}`}
-                className="group block bg-card border border-border rounded-xl overflow-hidden transition-all hover:border-foreground/30 hover:-translate-y-1"
-              >
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={study.image || "/placeholder.svg"}
-                    alt={study.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+        <div className="mx-auto flex max-w-6xl flex-col gap-16">
+          {heading ? (
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">{heading}</h2>
+              {subheading ? (
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">{subheading}</p>
+              ) : null}
+            </div>
+          ) : null}
+          {caseStudies.map(({ title, description, highlight, liveUrl, images }) => (
+            <div key={title} className="grid gap-8 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:items-center">
+              <div className="space-y-4 text-left">
+                <h3 className="text-2xl font-semibold text-foreground sm:text-3xl">{title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{description}</p>
+                <p className="text-sm font-medium text-foreground/80">{highlight}</p>
+                <div className="pt-2">
+                  <Link
+                    href={liveUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center rounded-xl bg-[#0B1B4A] px-5 py-2 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-[#091337]"
+                  >
+                    Live Preview
+                  </Link>
                 </div>
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
-                      {study.industry}
-                    </span>
-                    <span className="px-3 py-1 bg-secondary text-foreground text-sm rounded-full font-semibold">
-                      {study.metric}
-                    </span>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2">
+                {images.map((image, index) => (
+                  <div
+                    key={`${title}-image-${index}`}
+                    className="flex h-full items-center justify-center rounded-[24px] border-[6px] border-[#109BFF] bg-background p-3 shadow-[0_15px_45px_rgba(16,155,255,0.15)]"
+                  >
+                    <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
+                      <Image
+                        src={image}
+                        alt={`${title} screenshot ${index + 1}`}
+                        fill
+                        sizes="(min-width: 1024px) 45vw, 90vw"
+                        className="object-cover"
+                      />
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-sans font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
-                    {study.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{study.description}</p>
-                  <div className="flex items-center text-primary group-hover:text-foreground transition-colors">
-                    <span className="text-sm font-semibold">Read case study</span>
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

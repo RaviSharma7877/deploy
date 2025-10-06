@@ -1,13 +1,12 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/home/hero-section"
-import { ProblemSection } from "@/components/home/problem-section"
 import { FrameworkSection } from "@/components/home/framework-section"
-import { WhatWeDoSection } from "@/components/home/what-we-do-section"
 import { CaseStudyHighlights } from "@/components/home/case-study-highlights"
-import { TechStackStrip } from "@/components/home/tech-stack-strip"
 import { ClosingCTA } from "@/components/home/closing-cta"
+import { WorkTestimonial } from "@/components/work/work-testimonial"
 import { buildMetadata, siteConfig } from "@/lib/site"
+import { LogoTicker } from "@/components/LogoTicker"
 
 export const metadata = buildMetadata({
   title: `${siteConfig.name} | AI-First Product & Growth Studio`,
@@ -21,11 +20,19 @@ export default function HomePage() {
       <Navigation />
       <main id="main-content" className="min-h-screen">
         <HeroSection />
-        <ProblemSection />
-        <FrameworkSection />
-        <WhatWeDoSection />
+        <LogoTicker />
+        <WorkTestimonial
+          quote="Agenlabs helped us build our website from scratch to production in a record 1 month time. They took our requirements and delivered a website we are proud of so much that we are thrilled. I couldn't be any happier. Highly recommended."
+          author="Tyler Durden"
+          role="Founder at Project Mayhem"
+        />
         <CaseStudyHighlights />
-        <TechStackStrip />
+        <WorkTestimonial
+          quote="Agenlabs are different and one of their kind. They are very professional and have a great team of developers. They are very responsive and always available to help. I would highly recommend them to anyone looking for a website or app development."
+          author="Michael Scott"
+          role="Manager at Dundler Mifflin"
+        />
+        <FrameworkSection />
         <ClosingCTA />
       </main>
       <Footer />

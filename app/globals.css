@@ -123,3 +123,14 @@
 }
 
 /* Removed all gradient utilities - using only black/white theme */
+
+@keyframes logo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-marquee {
+  animation: logo-marquee 12s linear infinite;
+  will-change: transform;
+}

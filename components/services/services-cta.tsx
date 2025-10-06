@@ -1,40 +1,29 @@
-"use client"
-
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
-import { useCalendly } from "@/hooks/use-calendly"
-import { smoothTransition } from "@/lib/motion"
+import Link from "next/link"
 
 export function ServicesCTA() {
-  const { openCalendly } = useCalendly()
-
   return (
-    <section className="py-32 bg-muted">
+    <section className="bg-background py-20 sm:py-24">
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
-          className="max-w-4xl mx-auto text-center bg-card border border-border/60 rounded-xl p-12 md:p-16 shadow-sm"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={smoothTransition}
-        >
-          <h2 className="text-3xl md:text-4xl font-sans font-bold tracking-tight mb-6 text-foreground">
-            Let’s design your next growth run.
-          </h2>
-          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            Share the product goal that keeps you up at night and we’ll blueprint the team, timeline, and growth loops
-            that will get you there without the usual agency drag.
-          </p>
-          <Button
-            size="lg"
-            onClick={openCalendly}
-            className="rounded-xl px-8 transition-all hover:-translate-y-0.5 hover:shadow-lg"
-          >
-            Start a working session
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </motion.div>
+        <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-b from-[#15263F] via-[#122136] to-[#0D1A2C] px-6 py-16 text-center text-white sm:px-10 lg:px-16">
+          <div className="pointer-events-none absolute inset-0 opacity-25">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </div>
+          <div className="relative mx-auto max-w-3xl">
+            <h2 className="text-2xl font-semibold sm:text-3xl">Ready to spin up your pod?</h2>
+            <p className="mt-4 text-sm text-white/70 sm:text-base">
+              Tell us about the outcome you need—launch, scale, or evolve—and we’ll come back within 24 hours with the pod,
+              plan, and first sprint.
+            </p>
+            <div className="mt-10 flex justify-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center rounded-2xl border border-white/70 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

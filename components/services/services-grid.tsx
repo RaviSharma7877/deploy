@@ -1,119 +1,97 @@
-"use client"
-
-import { motion } from "framer-motion"
 import Link from "next/link"
-import { Code, Brain, BarChart3, Settings, ArrowRight } from "lucide-react"
-import { createSmoothTransition } from "@/lib/motion"
+import { ArrowRight, BarChart3, Brain, Code, Settings } from "lucide-react"
 
 export function ServicesGrid() {
   const services = [
     {
       icon: Brain,
+      label: "Discover",
       title: "Strategy → Launch",
-      subtitle: "Vision",
       description:
-        "Discovery, customer research, and AI opportunity modelling that aligns leadership on what to build and how to measure success.",
-      deliverables: [
-        "North-star metrics",
+        "Customer research, AI opportunity mapping, and launch planning that aligns leadership on what to build next.",
+      bullets: [
+        "North-star metric playbook",
         "Experience architecture",
         "AI opportunity canvas",
-        "Launch sequencing",
-        "Operating cadences",
+        "Roadmapping + sequencing",
       ],
     },
     {
       icon: Code,
+      label: "Build",
       title: "AI product engineering",
-      subtitle: "Build",
       description:
-        "Design systems, front-end craft, resilient services, and LLM integrations delivered by a pod that ships production-ready code weekly.",
-      deliverables: [
+        "Design systems, resilient services, and LLM integrations shipped by a pod that drops production-ready code every week.",
+      bullets: [
         "Full-stack delivery",
-        "Design systems",
-        "LLM & data pipelines",
+        "Design systems + UX",
+        "LLM and data pipelines",
         "Security & compliance",
-        "Infrastructure-as-code",
       ],
     },
     {
       icon: BarChart3,
+      label: "Scale",
       title: "Growth & RevOps integration",
-      subtitle: "Scale",
       description:
-        "Lifecycle analytics, activation experiments, and revenue operations that connect product usage with pipeline and retention.",
-      deliverables: [
+        "Lifecycle analytics, activation experiments, and revenue ops that connect product usage to pipeline and retention.",
+      bullets: [
         "Activation experiments",
         "Lifecycle automation",
         "Pricing & packaging",
-        "Sales enablement",
         "Revenue analytics",
       ],
     },
     {
       icon: Settings,
+      label: "Evolve",
       title: "Managed evolution",
-      subtitle: "Grow",
       description:
-        "Reliability, cost optimisation, and AI copilots that keep your product improving after launch without bloating the headcount.",
-      deliverables: [
-        "Site reliability",
+        "Reliability, cost optimisation, and AI copilots that keep improving the product after launch—without bloating headcount.",
+      bullets: [
+        "Site reliability & SLOs",
         "Cost optimisation",
-        "AI copilots",
-        "Analytics & ML ops",
+        "AI copilots + assistants",
         "Continuous delivery",
       ],
     },
   ]
 
   return (
-    <section className="py-32 bg-background">
+    <section className="bg-background py-20 sm:py-24">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-16">
-          {services.map((service, index) => (
-            <motion.div
+        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2">
+          {services.map((service) => (
+            <article
               key={service.title}
-              className="bg-card border border-border rounded-xl p-8 md:p-12 transition-all hover:border-foreground/30"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={createSmoothTransition({ delay: index * 0.1 })}
+              className="flex h-full flex-col gap-6 rounded-3xl border border-border/70 bg-card/85 p-8 shadow-sm"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Icon and Title */}
-                <div className="lg:col-span-1">
-                  <div className="w-16 h-16 bg-primary text-primary-foreground rounded-xl flex items-center justify-center mb-6">
-                    <service.icon className="w-8 h-8" />
-                  </div>
-                  <div className="inline-block px-3 py-1 bg-primary/10 text-primary text-sm rounded-full mb-4">
-                    {service.subtitle}
-                  </div>
-                  <h3 className="text-3xl font-sans font-bold mb-4 text-foreground">{service.title}</h3>
+              <div className="flex items-center gap-3 text-sm font-semibold text-[#0B1B4A]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#0B1B4A]/30 bg-background">
+                  <service.icon className="h-5 w-5" />
                 </div>
-
-                {/* Description and Deliverables */}
-                <div className="lg:col-span-2">
-                  <p className="text-lg text-muted-foreground leading-relaxed mb-6">{service.description}</p>
-
-                  <div className="mb-6">
-                    <h4 className="text-sm font-sans font-semibold text-foreground mb-3 uppercase tracking-wider">
-                      Deliverables
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.deliverables.map((item) => (
-                        <span key={item} className="px-3 py-1 bg-secondary border border-border text-muted-foreground text-sm rounded-lg">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <Link href="/work" className="inline-flex items-center text-primary hover:text-foreground transition-colors group">
-                    See related outcomes
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
+                {service.label}
               </div>
-            </motion.div>
+              <h3 className="text-2xl font-semibold text-foreground">{service.title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">{service.description}</p>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                {service.bullets.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-[#0B1B4A]" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-auto flex pt-2">
+                <Link
+                  href="/work"
+                  className="inline-flex items-center text-[#0B1B4A] transition-transform hover:translate-x-1"
+                >
+                  See related outcomes
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </div>
+            </article>
           ))}
         </div>
       </div>

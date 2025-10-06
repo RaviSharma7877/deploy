@@ -2,35 +2,42 @@
 
 import { motion } from "framer-motion"
 import { createSmoothTransition, smoothTransition } from "@/lib/motion"
+import { AnimatedGridPattern } from "../ui/animated-grid-pattern"
+import { cn } from "@/lib/utils"
 
 export function ProblemSection() {
   return (
-    <section className="py-32 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            className="text-4xl md:text-5xl font-sans font-bold tracking-tight mb-8 text-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={smoothTransition}
-          >
-            Product teams aren’t short on ideas—they’re short on integrated operators.
-          </motion.h2>
+    <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      <AnimatedGridPattern
+        numSquares={30}
+        maxOpacity={0.1}
+        duration={3}
+        className={cn(
+          "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
+          "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12",
+        )}
+      />
 
-          <motion.p
-            className="text-lg md:text-xl text-muted-foreground leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={createSmoothTransition({ delay: 0.2 })}
-          >
-            Internal teams are drowning between roadmap debt, market pressure, and agencies that bill for research
-            decks instead of shipping outcomes. We embed product strategy, engineering, and commercial growth into one
-            AI-first pod so you can release faster, prove value sooner, and reinvest in the loops that scale revenue.
-          </motion.p>
+      <div className="relative z-10 max-w-4xl mx-auto px-6 py-12">
+        <div className="flex flex-col items-center text-center space-y-8">
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-10-06%20at%2012.03.17-6gcKV7slSl3TOFgd55lN15fNuzV5G9.png"
+            alt="Michael Scott"
+            className="w-24 h-24 rounded-full object-cover"
+          />
+
+          <blockquote className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed text-foreground">
+            Agenlabs are different and one of their kind. They are very professional and have a great team of
+            developers. They are very responsive and always available to help. I would highly recommend them to anyone
+            looking for a website or app development.
+          </blockquote>
+
+          <div className="space-y-2">
+            <p className="text-xl font-semibold text-foreground">Michael Scott</p>
+            <p className="text-lg text-muted-foreground">Manager at Dunder Mifflin</p>
+          </div>
         </div>
       </div>
-    </section>
+    </main>
   )
 }

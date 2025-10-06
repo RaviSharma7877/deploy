@@ -2,10 +2,8 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useCalendly } from "@/hooks/use-calendly"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { siteConfig } from "@/lib/site"
 
 export function Navigation() {
@@ -33,13 +31,11 @@ export function Navigation() {
   }, [isMobileMenuOpen])
 
   const navLinks = [
-    { href: "/about", label: "About" },
-    // { href: "/services", label: "Solutions" },
-    // { href: "/work", label: "Case Studies" },
+    { href: "/work", label: "Work" },
+    { href: "/services", label: "Services" },
+    { href: "/packages", label: "Packages" },
+    { href: "/templates", label: "Templates" },
     { href: "/blog", label: "Blog" },
-    // { href: "/resources", label: "Playbooks" },
-    { href: "/careers", label: "Careers" },
-    { href: "/contact", label: "Contact" },
   ]
 
   const homeLabel = `${siteConfig.name} home`
@@ -53,45 +49,46 @@ export function Navigation() {
       aria-label="Main navigation"
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 gap-6">
           {/* Logo */}
           <Link
             href="/"
-            className="text-2xl font-sans font-bold tracking-tight hover:text-primary transition-colors z-50"
+            className="flex items-center gap-2 text-xl font-semibold tracking-tight text-foreground transition-colors hover:text-primary z-50"
             aria-label={homeLabel}
           >
-            {siteConfig.shortName}
+            <span className="text-2xl leading-none">&gt;</span>
+            <span>{siteConfig.shortName}</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-10 text-sm font-medium text-muted-foreground">
             {navLinks.map((link) => (
               <Link
                 key={link?.href}
                 href={link?.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none"
               >
                 {link.label}
               </Link>
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle />
-            <Button
+          <div className="hidden lg:flex items-center">
+            <button
               onClick={openCalendly}
-              className="bg-primary text-primary-foreground rounded-xl hover:shadow-lg hover:shadow-primary/20 transition-all hover:-translate-y-0.5"
+              className="relative inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#7B7FFE] to-[#80E5FF] p-[1px] text-sm font-semibold text-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#7B7FFE]"
             >
-              Book a Strategy Session
-            </Button>
+              <span className="rounded-full bg-background px-5 py-2 text-muted-foreground">
+                Contact
+              </span>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex lg:hidden items-center gap-2">
-            <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-foreground hover:text-primary transition-colors z-50"
+              className="p-2 text-foreground transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#7B7FFE] z-50"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMobileMenuOpen}
             >
@@ -102,31 +99,29 @@ export function Navigation() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-20 bg-background/95 backdrop-blur-lg z-40 animate-in fade-in slide-in-from-top-4 duration-200">
-          <div className="container mx-auto px-4 py-8 h-full overflow-y-auto">
-            <div className="flex flex-col gap-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-lg text-muted-foreground hover:text-foreground transition-colors py-3 block border-b border-border/50"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="mt-4">
-                <Button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false)
-                    openCalendly()
-                  }}
-                  className="bg-primary text-primary-foreground rounded-xl w-full py-6 text-base"
-                >
-                  Book a Strategy Session
-                </Button>
-              </div>
-            </div>
+        <div className="lg:hidden fixed inset-0 bg-background/95 backdrop-blur-sm z-40 animate-in fade-in duration-200">
+          <div className="flex h-full flex-col items-center justify-center gap-8 px-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-2xl font-semibold text-foreground transition-colors hover:text-primary focus-visible:text-primary focus-visible:outline-none"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false)
+                openCalendly()
+              }}
+              className="relative mt-4 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#7B7FFE] to-[#80E5FF] p-[1px] text-base font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#7B7FFE]"
+            >
+              <span className="rounded-full bg-background px-7 py-2 text-muted-foreground">
+                Contact
+              </span>
+            </button>
           </div>
         </div>
       )}

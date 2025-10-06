@@ -1,59 +1,29 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { createSmoothTransition, smoothTransition } from "@/lib/motion"
 
 export function ClosingCTA() {
   return (
-    <section className="py-32 bg-background relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-foreground to-transparent rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold tracking-tight mb-6 text-foreground"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={smoothTransition}
-          >
-            Ready to escape the billable-hour treadmill?
-          </motion.h2>
-
-          <motion.p
-            className="text-lg md:text-xl text-muted-foreground mb-12 leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={createSmoothTransition({ delay: 0.2 })}
-          >
-            Let’s design the roadmap, build the platform, and wire growth into the product together. E2S_HuB embeds
-            senior product, revenue, and engineering leaders so your team can focus on the next vision milestone.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={createSmoothTransition({ delay: 0.4 })}
-          >
-            <Button
-              asChild
-              size="lg"
-              className="rounded-xl text-base px-8 transition-all hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              <Link href="/contact">
-                Book a working session
-                <ArrowRight className="ml-2 h-5 w-5" />
+    <section className="bg-background py-24 sm:py-32">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-b from-[#15263F] via-[#122136] to-[#0D1A2C] px-6 py-16 text-center text-white sm:px-10 lg:px-16">
+          <div className="pointer-events-none absolute inset-0 opacity-25">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </div>
+          <div className="relative mx-auto max-w-2xl">
+            <h2 className="text-3xl font-semibold sm:text-4xl">Let&apos;s build your website today!</h2>
+            <p className="mt-4 text-base text-white/70 sm:text-lg">
+              Contact us and we will get back within 24 hours. We mean it. You saw the testimonials, right?
+            </p>
+            <div className="mt-10 flex justify-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center rounded-2xl border border-white/70 px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Contact Us
               </Link>
-            </Button>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
