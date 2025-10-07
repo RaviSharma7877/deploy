@@ -19,20 +19,28 @@ const logos = [acmeLogo, apexLogo, celestialLogo, quantumLogo, pulseLogo, echoLo
 export const LogoTicker = ({}) => {
     const marqueeLogos = [...logos, ...logos]
     return (
-        <section className="mx-auto px-4 py-20 md:py-24 lg:px-8">
+        <section className="mx-auto px-4 py-16 md:py-20 lg:px-8">
             <div className="container">
-                <div className="flex items-center gap-5">
-                    <div className="flex-1 md:flex-none">
-                        <h2 className="font-bold">Trusted by top innovative teams</h2>
+                <div className="flex flex-col gap-6 md:flex-row md:items-center">
+                    <div className="w-full md:w-auto">
+                        <h2 className="text-center md:text-left font-bold text-foreground">
+                            Trusted by top innovative teams
+                        </h2>
                     </div>
-                    <div className="relative flex flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-                        <div className="logo-marquee flex flex-none gap-14 whitespace-nowrap" style={{ animationDuration: "12s" }}>
+                    <div
+                        className="relative flex flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_12%,white_88%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,white_12%,white_88%,transparent)]"
+                        aria-hidden="true"
+                    >
+                        <div
+                            className="logo-marquee flex flex-none gap-8 md:gap-14 whitespace-nowrap"
+                            style={{ animationDuration: "12s" }}
+                        >
                             {marqueeLogos.map((logo, index) => (
-                                <div key={`${logo.src}-${index}`} className="flex h-6 w-auto flex-none items-center">
+                                <div key={`${logo.src}-${index}`} className="flex h-7 md:h-8 w-auto flex-none items-center">
                                     <Image
                                         src={logo.src}
                                         alt="Partner logo"
-                                        className="h-full w-auto brightness-150 contrast-125 !grayscale saturate-150"
+                                        className="h-full w-auto grayscale opacity-80 transition-opacity duration-200 hover:opacity-100 dark:opacity-90"
                                         width={120}
                                         height={60}
                                         priority={index === 0}
